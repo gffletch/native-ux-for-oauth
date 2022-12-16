@@ -40,7 +40,7 @@ For mobile apps the user experience can be a little jarring when starting the
 authentication/authorization flow as the user is transitioned from a native
 user experience to a browser context in order to login or perform other
 identity related functions. This specification defines a mechanisms that
-allows a client to request an interaction with the Authorization server 
+allows a client to request an interaction with the Authorization server
 that allows for a fully native authorization experience.
 
 
