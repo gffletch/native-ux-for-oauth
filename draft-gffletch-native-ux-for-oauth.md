@@ -49,6 +49,30 @@ that allows for a fully native authorization experience.
 {::boilerplate bcp14-tagged}
 
 
+# Response Mode
+
+When a mobile app desires to start an authorization flow with the
+Authorization Server (AS), it specifies a new `response_mode` value
+of `native_ux` which requests the AS to return the challenge
+sequence in a descriptive language that can be interpreted and
+displayed in a native experience by the mobile app.
+
+## native_ux
+
+This specification defines the `response_mode` value of `native_ux`
+
+`native_ux`
+: In this mode, the authorization challenge sequence, including
+consent, is managed via a domain specific language (DSL) with the
+last response containing the `code` and `state` parameters.
+
+The native application uses the challenges described by the DSL
+to obtain the necessary authorization credentials and complete
+the flow required by the AS. At this point the AS returns the
+`code` and `state` parameters via the DSL and the native app
+completes the OAuth flow with the AS by submitted the required
+/token endpoint request.
+
 # Security Considerations
 
 TODO Security
