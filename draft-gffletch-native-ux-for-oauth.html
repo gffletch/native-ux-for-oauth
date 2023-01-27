@@ -16,21 +16,21 @@ enables a more seamless authorization experience.
 <meta content="draft-gffletch-native-ux-for-oauth-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.15.3
-    Python 3.10.8
+    Python 3.10.9
     appdirs 1.4.4
     ConfigArgParse 1.5.3
     google-i18n-address 2.5.2
     html5lib 1.1
     intervaltree 3.1.0
     Jinja2 3.1.2
-    lxml 4.9.1
+    lxml 4.9.2
     MarkupSafe 2.1.1
     pycountry 22.3.5
     PyYAML 6.0
     requests 2.28.1
     setuptools 65.6.0
     six 1.16.0
-    wcwidth 0.2.5
+    wcwidth 0.2.6
 -->
 <link href="draft-gffletch-native-ux-for-oauth.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -374,7 +374,7 @@ dl {
 dl > dt {
   float: left;
   margin-right: 1em;
-  min-width: 12ch;
+  min-width: 8ch;
 }
 dl.dlNewline > dt {
   float: none;
@@ -405,11 +405,11 @@ dl > dd > dl {
 a, a[href].selfRef:hover {
   text-decoration: none;
 }
-a[href].selfRef {
-  color: var(--text-color);
-}
 a[href] {
   color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
 }
 a[href]:hover {
   text-decoration: underline;
@@ -1028,7 +1028,7 @@ svg :is([stroke="white"], [stroke^="#fff"]) {
 svg :is([fill="black"], [fill^="#000"], :not([fill])) {
   fill: var(--text-color);
 }
-svg :is([stroke="fill"], [fill^="#fff"]) {
+svg :is([fill="white"], [fill^="#fff"]) {
   fill: var(--background-color);
 }
 </style>
@@ -1039,11 +1039,11 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">oauth-native-ux</td>
-<td class="right">December 2022</td>
+<td class="right">January 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Fletcher</td>
-<td class="center">Expires 19 June 2023</td>
+<td class="center">Expires 31 July 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1056,12 +1056,12 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-gffletch-native-ux-for-oauth-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-12-16" class="published">16 December 2022</time>
+<time datetime="2023-01-27" class="published">27 January 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-06-19">19 June 2023</time></dd>
+<dd class="expires"><time datetime="2023-07-31">31 July 2023</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1105,7 +1105,7 @@ enables a more seamless authorization experience.<a href="#section-abstract-1" c
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 19 June 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 31 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1114,7 +1114,7 @@ enables a more seamless authorization experience.<a href="#section-abstract-1" c
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2022 IETF Trust and the persons identified as the
+            Copyright (c) 2023 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1141,15 +1141,40 @@ enables a more seamless authorization experience.<a href="#section-abstract-1" c
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-response-mode" class="internal xref">Response Mode</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-description" class="internal xref">Description</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-native_ux" class="internal xref">native_ux</a></p>
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-response-mode" class="internal xref">Response Mode</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
+                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-native_ux" class="internal xref">native_ux</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-protocol-parameter" class="internal xref">Protocol Parameter</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-initiation-message" class="internal xref">Initiation Message</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-completion-message" class="internal xref">Completion Message</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-authentication-endpoint" class="internal xref">Authentication endpoint (???)</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
+                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-protocol-specifications" class="internal xref">Protocol specifications</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-1st-party-clients" class="internal xref">1st party clients</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
@@ -1172,12 +1197,19 @@ enables a more seamless authorization experience.<a href="#section-abstract-1" c
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">For mobile apps the user experience can be a little jarring when starting the
+<p id="section-1-1">Today, both OAuth and OpenID Connect leave the full authentication flow
+out of scope and the full responsibility of the Authorization Server (AS).
+The client just directs the user to the AS /authorization endpoint and the
+user interacts with the AS via some web experience (system browser or webview).<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">For mobile apps this user experience can be a little jarring when starting the
 authentication/authorization flow as the user is transitioned from a native
 user experience to a browser context in order to login or perform other
-identity related functions. This specification defines a mechanisms that
+identity related functions.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">This specification defines a mechanisms that
 allows a client to request an interaction with the Authorization server
-that allows for a fully native authorization experience.<a href="#section-1-1" class="pilcrow">¶</a></p>
+that allows for a fully native authorization experience. The requirements
+of the flow are managed by the AS and the client with the client rendering
+the UX similar to how the browser renders the UX in OAuth flows today.<a href="#section-1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1191,37 +1223,144 @@ described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</s
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="response-mode">
+<div id="description">
 <section id="section-3">
-      <h2 id="name-response-mode">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-response-mode" class="section-name selfRef">Response Mode</a>
+      <h2 id="name-description">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-description" class="section-name selfRef">Description</a>
       </h2>
-<p id="section-3-1">When a mobile app desires to start an authorization flow with the
+<p id="section-3-1">The goal of this mechanism is to be a lightweight way for the client
+to signal to the AS that it would like to use a native protocol rather
+than a browser to complete the authorization or authentication (OpenID Connect)
+flow. In order to accomplish this a new <code>response_mode</code> value is defined along
+with a corresponding <code>protocol</code> parameter and required messages to start
+and complete the flow.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">A basic flow is as follows:
+1. The client constructs its normal authorization request setting the <code>response_mode</code> to <code>native_ux</code> and specifying a<code>protocol</code> value
+2. The client opens an HTTP GET request to the /authorization endpoint passing the authorization request
+3. The Authorization Server (AS) recognizes the requested <code>response_mode</code> and <code>protocol</code> and returns the <code>initiation</code> response (JSON)
+4. The client processes the <code>initiation</code> response and starts the flow
+5. When the client has met all the AS criteria for the authorization request, the AS returns the <code>completion</code> message
+6. The client extracts the <code>code</code> and optional <code>state</code> message from the <code>completion</code> message
+7. The client constructs a call to the AS /token endpoint as per normal OAuth and receives back requested tokens<a href="#section-3-2" class="pilcrow">¶</a></p>
+<div id="response-mode">
+<section id="section-3.1">
+        <h3 id="name-response-mode">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-response-mode" class="section-name selfRef">Response Mode</a>
+        </h3>
+<p id="section-3.1-1">When a mobile app desires to start an authorization flow with the
 Authorization Server (AS), it specifies a new <code>response_mode</code> value
 of <code>native_ux</code> which requests the AS to return the challenge
 sequence in a descriptive language that can be interpreted and
-displayed in a native experience by the mobile app.<a href="#section-3-1" class="pilcrow">¶</a></p>
+displayed in a native experience by the mobile app.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <div id="nativeux">
-<section id="section-3.1">
-        <h3 id="name-native_ux">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-native_ux" class="section-name selfRef">native_ux</a>
-        </h3>
-<p id="section-3.1-1">This specification defines the <code>response_mode</code> value of <code>native_ux</code><a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-3.1-2">
-          <dt id="section-3.1-2.1"><code>native_ux</code></dt>
-          <dd style="margin-left: 1.5em" id="section-3.1-2.2">
-            <p id="section-3.1-2.2.1">In this mode, the authorization challenge sequence, including
+<section id="section-3.1.1">
+          <h4 id="name-native_ux">
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-native_ux" class="section-name selfRef">native_ux</a>
+          </h4>
+<p id="section-3.1.1-1">This specification defines the <code>response_mode</code> value of <code>native_ux</code><a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3.1.1-2">
+            <dt id="section-3.1.1-2.1"><code>native_ux</code></dt>
+            <dd style="margin-left: 1.5em" id="section-3.1.1-2.2">
+              <p id="section-3.1.1-2.2.1">In this mode, the authorization challenge sequence, including
 consent, is managed via a domain specific language (DSL) with the
-last response containing the <code>code</code> and <code>state</code> parameters.<a href="#section-3.1-2.2.1" class="pilcrow">¶</a></p>
+last response containing the <code>code</code> and <code>state</code> parameters.<a href="#section-3.1.1-2.2.1" class="pilcrow">¶</a></p>
 </dd>
-        <dd class="break"></dd>
+          <dd class="break"></dd>
 </dl>
-<p id="section-3.1-3">The native application uses the challenges described by the DSL
+<p id="section-3.1.1-3">The native application uses the challenges described by the DSL
 to obtain the necessary authorization credentials and complete
 the flow required by the AS. At this point the AS returns the
 <code>code</code> and <code>state</code> parameters via the DSL and the native app
 completes the OAuth flow with the AS by submitted the required
-/token endpoint request.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+/token endpoint request.<a href="#section-3.1.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="protocol-parameter">
+<section id="section-3.2">
+        <h3 id="name-protocol-parameter">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-protocol-parameter" class="section-name selfRef">Protocol Parameter</a>
+        </h3>
+<p id="section-3.2-1">Given that there may be multiple defined mechanisms defining the
+challenge response protocol, the client indicates which protocol
+it supports via the <code>protocol</code> parameter. This parameter contains
+one or more previously registered (IANA???) protocol names
+identifying which protocol the client supports. The AS may choose
+any of the supported protocols or return a message indicating
+it does not support any of the protocols and the client must use
+the standard web browser based experience.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3.2-2">
+          <dt id="section-3.2-2.1"><code>protocol</code></dt>
+          <dd style="margin-left: 1.5em" id="section-3.2-2.2">
+            <p id="section-3.2-2.2.1">A space delimited set of protocol values that the client supports.
+(TODO: what about versions? Is this too complicated?)<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="initiation-message">
+<section id="section-3.3">
+        <h3 id="name-initiation-message">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-initiation-message" class="section-name selfRef">Initiation Message</a>
+        </h3>
+<p id="section-3.3-1">When the AS agrees to start the native UX protocol, it returns a JSON
+message containing an <code>mfa_token</code> and the HTTPS <code>endpoint</code> to contact
+to start the flow. The <code>mfa_token</code> is only valid for this instance of
+the mobile app originating on this device. Protcol specifications
+may add additional elements to this JSON response.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">{
+"mfa_token" : "asdfasdfasd",
+"endpoint" : "https://idp.example/native"
+}<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">If the AS determines that the risk is too high to complete the flow
+via the native experience the AS may return a JSON response that
+instructs the client to open a web browser to the specified URL.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-4">{ "error" : "browser_required", "url" : "https://idp.example/8sdfgs34t9sdgfesr" }<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+<p id="section-3.3-5">The URL returned by the AS <span class="bcp14">MUST</span> be unique to this authentication request
+and contain all the semantics of the original /authorization request.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="completion-message">
+<section id="section-3.4">
+        <h3 id="name-completion-message">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-completion-message" class="section-name selfRef">Completion Message</a>
+        </h3>
+<p id="section-3.4-1">When the client and AS complete the authorization sequence as defined by
+the protocol specification, the AS returns the standard OAuth parameters
+via a JSON message. This message contains the OAuth <code>code</code> value and optional
+<code>state</code> value. This claims present in this message may contain required claims
+as required by additional OAuth/OpenID Connect specifications and/or the
+protocol specification.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">{ "code" : "asdfadsfasdf", "state" : "8ckasd24rsadf" }<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.4-3">If the client does not successfully complete the authorization flow, the AS
+may return the message directing the client to the web experience or it can
+return the following error response. If the client recieves an error it
+must inform the user of the error and exit the authorization attempt. The <code>mfa_token</code>
+will no longer be valid once this message is received.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
+<p id="section-3.4-4">{ "error" : "failed", "error_description" : "reason for failure" }<a href="#section-3.4-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authentication-endpoint-">
+<section id="section-3.5">
+        <h3 id="name-authentication-endpoint">
+<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-authentication-endpoint" class="section-name selfRef">Authentication endpoint (???)</a>
+        </h3>
+<p id="section-3.5-1">In order to support this flow, the AS defines a new <code>/native</code> endpoint
+where the client directs requests as defined by the protocol specification.
+The authorization mechanisms for this endpoint is the <code>mfa_token</code> returned
+as part of the <code>initiation</code> message.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="protocol-specifications">
+<section id="section-3.6">
+        <h3 id="name-protocol-specifications">
+<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-protocol-specifications" class="section-name selfRef">Protocol specifications</a>
+        </h3>
+<p id="section-3.6-1">The actual mechanism as defined by the specified protocol is out of scope for
+this specification which just standardizes the framework for establishing
+the connection between the client and the AS.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1231,7 +1370,13 @@ completes the OAuth flow with the AS by submitted the required
       <h2 id="name-security-considerations">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-4-1">TODO Security<a href="#section-4-1" class="pilcrow">¶</a></p>
+<div id="st-party-clients">
+<section id="section-4.1">
+        <h3 id="name-1st-party-clients">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-1st-party-clients" class="section-name selfRef">1st party clients</a>
+      </h3>
+</section>
+</div>
 </section>
 </div>
 <div id="iana-considerations">
