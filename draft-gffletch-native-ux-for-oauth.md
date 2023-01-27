@@ -57,6 +57,80 @@ the UX similar to how the browser renders the UX in OAuth flows today.
 
 {::boilerplate bcp14-tagged}
 
+
+# Overview
+The Native Interaction Request is used to obtain an authorization code which can be 
+used with the Authorization Code Grant flow defined in [@RFC6749] to obtain an access
+and refresh token. 
+
+It allows a native client (e.g. a mobile phone application) to implement the user 
+experience for authenticating the user in a native application, without opening a 
+browser. 
+
+The native authentication SHOULD make use of Direct Interaction flows and MAY be 
+extended to other mechnisms to authenticate the user before issuing and Authorization Code. 
+
+The Authorization Code may be exchanged for an access and a refresh token.
+
+~~~ ascii-art
+     +----------+
+     | Resource |
+     |   Owner  |
+     |          |
+     +----------+
+          ^
+          |
+         (B)
+     +----|-----+         Native Interaction      +---------------+
+     |         -+----(A)------- Request --------->|               |
+     |  Native  |                                 | Authorization |
+     |  Client  |                                 |    Server     |
+     |          |          User Authenticates     |               |
+     |          |        with Direct Interaction  |               |
+     |         -+----(B)-------- Flow ----------->|               |
+     |          |                                 |               |
+     |          |                                 |               |
+     |         -+----(C)-- Authorization Code ---<|               |
+     |          |                                 +---------------+     
+     |          |                                      ^      v
+     |          |                                      |      |
+     |          |                                      |      |
+     |          |>---(D)-- Authorization Code ---------'      |
+     |          |          & Redirection URI                  |
+     |          |                                             |
+     |          |<---(E)----- Access Token -------------------'
+     +----------+       (w/ Optional Refresh Token)
+~~~
+Figure 1: Native Client Initiated Direct Interaction Grant
+
+The flow illustrated in Figure 1 includes the following steps:
+
+   (A)  The native client initiates the flow by initiating an authorization
+        request with response mode "native_ux" to the authorization endpoint.  
+        The native client includes its client identifier, requested scope, 
+        and local state similar to the Authroization Code Flow. Note the 
+        redirect URI is not sent.
+
+   (B)  The authorization server authenticates the resource owner and obtains 
+        the resource owners consent via the native client UX and 
+        grants or denies the native client's authorization request.
+
+   (C)  Once the resource owner grants access, the authorization
+        server returns an authorization code and any local state 
+        provided by the native client earlier.
+
+   (D)  At this point the native client completes the authroization code flow
+        by sending the authorization code received in the previous step to the
+        Authroization Server.
+        
+   (E)  The authorization server authenticates the native client and validates the
+        authorization code. If valid, the authorization server responds back with
+        an access token and, optionally, a refresh token.
+        
+TODO: How should the redirection URI be used? I assumed it won't be neccesary, 
+since no redirection is happening. Should it be set to null, rather than just omitting it
+to avoid too big a delta with the authroization code flow?
+
 # Description
 
 The goal of this mechanism is to be a lightweight way for the client
@@ -74,6 +148,7 @@ A basic flow is as follows:
 5. When the client has met all the AS criteria for the authorization request, the AS returns the `completion` message
 6. The client extracts the `code` and optional `state` message from the `completion` message
 7. The client constructs a call to the AS /token endpoint as per normal OAuth and receives back requested tokens
+
 
 ## Response Mode
 
@@ -162,6 +237,7 @@ as part of the `initiation` message.
 The actual mechanism as defined by the specified protocol is out of scope for
 this specification which just standardizes the framework for establishing
 the connection between the client and the AS.
+
 
 # Security Considerations
 
