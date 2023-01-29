@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-01-26T01:20:45.794041+00:00",
+  "timestamp": "2023-01-29T01:25:43.278326+00:00",
   "repo": "gffletch/native-ux-for-oauth",
   "labels": [
     {
@@ -50,5 +50,34 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOIoUoq85Ithn-",
+      "title": "Rough sketch and diagram",
+      "url": "https://github.com/gffletch/native-ux-for-oauth/pull/1",
+      "state": "MERGED",
+      "author": "PieterKas",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-01-27T20:40:01Z",
+      "updatedAt": "2023-01-27T21:32:10Z",
+      "baseRepository": "gffletch/native-ux-for-oauth",
+      "baseRefName": "main",
+      "baseRefOid": "5a7465b2fc1819008fb07cc8bc885a7805d1d82f",
+      "headRepository": "PieterKas/native-ux-for-oauth",
+      "headRefName": "patch-1",
+      "headRefOid": "2085990fd127f0e50a36f6477be7658229ef4123",
+      "closedAt": "2023-01-27T21:32:10Z",
+      "mergedAt": "2023-01-27T21:32:10Z",
+      "mergedBy": "gffletch",
+      "mergeCommit": {
+        "oid": "88ac230b18f2b3ce15407fadbb3ea0478054fea1"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
